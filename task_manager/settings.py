@@ -24,6 +24,15 @@ DEBUG = env.bool("DEBUG", default=True)
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = env("SMTP_EMAIL") 
+EMAIL_HOST_PASSWORD = env("SMTP_EMAIL_PASS") 
+DEFAULT_FROM_EMAIL = 'webmaster@localhost'
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,7 +49,13 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    "invitations"
 ]
+
+
+INVITATIONS_EMAIL_SUBJECT = 'You have been invited to join'
+INVITATIONS_INVITE_ONLY = True  
+INVITATIONS_USE_AUTH_EMAIL = True 
 
 
 # Google OAuth
@@ -54,13 +69,10 @@ SOCIALACCOUNT_PROVIDERS = {
             'access_type': 'online',
         },
         'OAUTH_PKCE_ENABLED': True,
+        'FETCH_USERINFO': True,
     }
 }
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'FETCH_USERINFO' : True
-    }
-}
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5' 
 

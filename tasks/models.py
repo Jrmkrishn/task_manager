@@ -10,3 +10,13 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title
+
+
+
+class GoogleOAuthKey(models.Model):
+    client_id = models.CharField(max_length=255)
+    client_secret = models.CharField(max_length=255)
+    redirect_uri = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"Google OAuth - {self.client_id}"

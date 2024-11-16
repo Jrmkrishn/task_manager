@@ -4,6 +4,7 @@ from tasks import views as task_views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('invitations/', include('invitations.urls')),
     path('accounts/', include('allauth.urls')),
     path('accounts/', include('allauth.socialaccount.urls')),
     path("logout", task_views.logout_view, name="logout"),
