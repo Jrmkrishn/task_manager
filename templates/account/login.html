@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load socialaccount %}
+
+{% block content %}
+<div class="social-login">
+    <style>
+        .social-login {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 10px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+    </style>
+    <h2>Sign In with Google</h2>
+    <div>
+        <a href="{% provider_login_url 'google' %}" class="btn btn-danger">Continue with Google</a>
+    </div>
+</div>
+
+
+{% endblock %}
