@@ -102,7 +102,7 @@ To enable Google login, you need to set up a Google OAuth client ID. Follow thes
 5. Add the redirect URI in the format: `http://127.0.0.1:8000/accounts/google/login/callback/`.
 6. Copy the **Client ID** and **Client Secret** and add them to the `.env` file.
 
-### 10. Invite Users (Optional)
+### 10. Invite Users 
 
 If you're using `django-invitations` to invite users:
 
