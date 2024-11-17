@@ -4,26 +4,29 @@
     <h2 class="heading">Welcome Back! Here's Your Task List</h2>
     <p class="subtitle">Stay organized and productive. Add, edit, or complete tasks as needed!</p>
     <a class="btn add-task-btn" href="{% url 'task_create' %}">+ Add New Task</a>
+    
     <ul class="task-list">
-        {% for task in tasks %}
-        <li class="task-item">
-            <div class="task-info">
-                <strong class="task-title">{{ task.title }}</strong>
-                <p class="task-description">{{ task.description }}</p>
-                <small class="task-meta">
-                    Created on: {{ task.created_at|date:"F j, Y" }}
-                </small>
-            </div>
-            <div class="task-actions">
-                <a class="btn edit-btn" href="{% url 'task_edit' task.pk %}">Edit</a>
-                <a class="btn delete-btn" href="{% url 'task_delete' task.pk %}">Delete</a>
-            </div>
-        </li>
-        {% empty %}
-        <li class="no-tasks">
-            <p>You have no tasks at the moment. Click <a href="{% url 'task_create' %}">here</a> to add one!</p>
-        </li>
-        {% endfor %}
+        {% if tasks %}
+            {% for task in tasks %}
+                <li class="task-item">
+                    <div class="task-info">
+                        <strong class="task-title">{{ task.title }}</strong>
+                        <p class="task-description">{{ task.description }}</p>
+                        <small class="task-meta">
+                            Created on: {{ task.created_at|date:"F j, Y" }}
+                        </small>
+                    </div>
+                    <div class="task-actions">
+                        <a class="btn edit-btn" href="{% url 'task_edit' task.pk %}">Edit</a>
+                        <a class="btn delete-btn" href="{% url 'task_delete' task.pk %}">Delete</a>
+                    </div>
+                </li>
+            {% endfor %}
+        {% else %}
+            <li class="no-tasks">
+                <p>You have no tasks at the moment. Click <a href="{% url 'task_create' %}">here</a> to add one!</p>
+            </li>
+        {% endif %}
     </ul>
 </div>
 {% endblock %}
